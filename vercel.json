@@ -1,6 +1,13 @@
 ﻿{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "builds": [
+    { "src": "dist/server/index.js", "use": "@vercel/node" },
+    { "src": "dist/client/**", "use": "@vercel/static" }
+  ],
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/assets/(.*)", "dest": "dist/client/assets/$1" },
+    { "src": "/favicon.svg", "dest": "dist/client/favicon.svg" },
+    { "src": "/(.*)", "dest": "dist/server/index.js" }
   ]
 }
